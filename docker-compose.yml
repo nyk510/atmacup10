@@ -1,0 +1,16 @@
+version: '2.3'
+services:
+  jupyter:
+    build: .
+    image: atmacup-10
+    container_name: atmacup-10-jupyter
+    working_dir: /analysis
+    volumes:
+      - ./:/analysis
+      - ${DATA_DIR}:/analysis/data
+    ports:
+      - ${JUPYTER_PORT}:8888
+      - ${INTERPRET_PORT}:7121
+    environment:
+      - VIVID_PROJECT_ROOT=/analysis/data/
+      - PYTHONPATH=/analysis
